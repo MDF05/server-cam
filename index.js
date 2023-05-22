@@ -24,7 +24,7 @@ app.get('/contoh', (req, res) => {
 })
 
 const port = process.env.PORT || 3000;
-const host = 'server-cam.vercel.app';
+const host = 'localhost';
 app.listen(port, host, () => {
     console.log('Your server is listening at http://localhost:3000');
 });
