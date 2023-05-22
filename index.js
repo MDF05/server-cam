@@ -23,4 +23,4 @@ app.get('/contoh', (req, res) => {
     res.sendFile(path.join(__dirname, 'contoh.html'))
 })
 
-app.listen(3000, console.log('your server listening at http://localhost:3000'))
+app.listen(3000, 'https://server-cam.vercel.app/', console.log('your server listening at http://localhost:3000'))
