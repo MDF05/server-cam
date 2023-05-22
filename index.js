@@ -23,4 +23,8 @@ app.get('/contoh', (req, res) => {
     res.sendFile(path.join(__dirname, 'contoh.html'))
 })
 
-app.listen(3000, 'https://server-cam.vercel.app/', console.log('your server listening at http://localhost:3000'))
+const port = process.env.PORT || 3000;
+const host = 'server-cam.vercel.app';
+app.listen(port, host, () => {
+    console.log('Your server is listening at http://localhost:3000');
+});
