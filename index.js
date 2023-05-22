@@ -1,13 +1,21 @@
 const express = require('express');
 const model = require('./utils/schema')
 const app = express();
+const cors = require('cors')
 const path = require('path')
+
+app.use(cors(corsOptions))
 app.use(
     express.urlencoded({
         extended: true,
     })
 );
 
+const corsOptions = {
+    origin: 'https://frontend-mdf05.vercel.app/', // Atur domain yang diizinkan untuk mengakses 
+    methods: 'GET,POST', // Atur metode HTTP yang diizinkan
+    allowedHeaders: 'Content-Type', // Atur header yang diizinkan
+};
 
 app.get('/', (req, res) => {
     res.send('berhasil terkirim')
