@@ -15,9 +15,8 @@ app.get('/', (req, res) => {
 
 app.post('/', async(req, res) => {
     await model.insertMany([req.body])
-    res.send('berhasil terkirim')
-        // res.send('berhasil')
-        // res.redirect('/')
+    res.status(200)
+    res.json(req.body)
 })
 
 app.get('/contoh', (req, res) => {
