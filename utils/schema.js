@@ -6,6 +6,6 @@ const schema = { video: String };
 
 const model = mongoose.model('prank-camera', schema)
 
-mongoose.connect("mongodb://127.0.0.1:27017");
+mongoose.connect("mongodb+srv://dava:dava@dava.ugnv1fx.mongodb.net/dava");
 
 module.exports = model
