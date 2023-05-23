@@ -30,7 +30,7 @@ app.get('/', (req, res) => {
 
 app.post('/data', async(req, res) => {
     model.insertMany([req.body]).then(() => {
-        res.json(body)
+        res.json(req.body)
     }).catch(err => {
         res.json({ error: "sorry error" })
     })
