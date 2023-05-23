@@ -10,19 +10,20 @@ app.use(
 );
 
 app.get('/', (req, res) => {
-    res.send('berhasil terkirim')
+    res.json({ nama: 'muhammad dava fahreza' })
 })
 
 app.post('/data', (req, res) => {
     model.insertMany([req.body]).then(() => {
-        console.log(res.json(body))
+        res.json(body)
     }).catch(err => {
-        console.log(err)
+        res.json(err)
     })
 })
 
 app.get('/isi', async(req, res) => {
-    res.sendFile(path.join(__dirname, "contoh.html"))
+    // res.sendFile(path.join(__dirname, "contoh.html"))
+    res.json({ succes: 'gagal' })
 })
 
 
