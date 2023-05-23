@@ -4,20 +4,21 @@ const path = require('path')
 const model = require('./utils/schema')
 const cors = require('cors')
 
-const corsConfig = {
+const corsOption = {
     "origin": "*",
     "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
     "preflightContinue": false,
     "optionsSuccessStatus": 204
 }
 
-app.use(
-    express.urlencoded({
-        extended: true,
-    })
-);
+// app.use(
+//     express.urlencoded({
+//         extended: true,
+//     })
+// );
 
-app.use(cors(corsConfig))
+app.use(express.json())
+app.use(cors(corsOption))
 
 app.get('/', (req, res) => {
     res.json({ nama: 'muhammad dava fahreza' })
