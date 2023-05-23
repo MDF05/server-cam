@@ -12,6 +12,8 @@ mongoose.connect("mongodb+srv://palen:Om4GPREvpvVkA7C0@dava.v4rbver.mongodb.net/
     keepAliveInitialDelay: 300000
 });
 
-
+// (async() => {
+//     await model.insertMany({ video: 'asu' })
+// })()
 
 module.exports = model

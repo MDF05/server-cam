@@ -13,15 +13,20 @@ app.get('/', (req, res) => {
     res.send('berhasil terkirim')
 })
 
-app.post('/', async(req, res) => {
+app.post('/data', async(req, res) => {
     await model.insertMany([req.body])
         // res.status(200)
+    console.log(req.body)
     res.json(req.body)
+})
+
+app.get('/isi', async(req, res) => {
+    res.sendFile(path.join(__dirname, "contoh.html"))
 })
 
 
 const port = process.env.PORT || 3000;
 const host = 'https://server-cam.vercel.app/';
-app.listen(port, host, () => {
+app.listen(3000, () => {
     console.log('Your server is listening at http://localhost:3000');
 });
