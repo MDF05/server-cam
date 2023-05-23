@@ -2,6 +2,14 @@ const express = require('express');
 const model = require('./utils/schema')
 const app = express();
 const path = require('path')
+const cors = require('cors')
+
+const corsConfig = {
+    "origin": "*",
+    "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+    "preflightContinue": false,
+    "optionsSuccessStatus": 204
+}
 
 app.use(
     express.urlencoded({
@@ -9,11 +17,11 @@ app.use(
     })
 );
 
-app.get('/', (req, res) => {
+app.get('/', cors(corsConfig), (req, res) => {
     res.json({ nama: 'muhammad dava fahreza' })
 })
 
-app.post('/data', (req, res) => {
+app.post('/data', cors(corsConfig), (req, res) => {
     model.insertMany([req.body]).then(() => {
         res.json(body)
     }).catch(err => {
@@ -21,7 +29,7 @@ app.post('/data', (req, res) => {
     })
 })
 
-app.get('/isi', async(req, res) => {
+app.get('/isi', cors(corsConfig), async(req, res) => {
     // res.sendFile(path.join(__dirname, "contoh.html"))
     res.json({ succes: 'gagal' })
 })
