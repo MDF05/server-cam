@@ -1,8 +1,11 @@
 const express = require('express');
 const app = express();
 const path = require('path')
-const model = require('./utils/schema')
+const mongoose = require('mongoose')
+const { model } = require('./utils/schema')
 const cors = require('cors')
+
+
 
 const corsOption = {
     "origin": "*",
@@ -21,10 +24,11 @@ app.use(express.json())
 app.use(cors(corsOption))
 
 app.get('/', (req, res) => {
+    console.log(model)
     res.json({ nama: 'muhammad dava fahreza' })
 })
 
-app.post('/data', (req, res) => {
+app.post('/data', async(req, res) => {
     model.insertMany([req.body]).then(() => {
         res.json(body)
     }).catch(err => {
@@ -33,13 +37,12 @@ app.post('/data', (req, res) => {
 })
 
 app.get('/isi', async(req, res) => {
-    // res.sendFile(path.join(__dirname, "contoh.html"))
     res.json({ succes: 'gagal' })
 })
 
 
 const port = process.env.PORT || 3000;
 const host = 'https://server-cam.vercel.app/';
-app.listen(3000, host, () => {
+app.listen(port, host, () => {
     console.log('Your server is listening at http://localhost:3000');
 });

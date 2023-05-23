@@ -16,4 +16,4 @@ mongoose.connect("mongodb://127.0.0.1:27017/test", {
 //     await model.insertMany({ video: 'asu' })
 // })()
 
-module.exports = model
+module.exports = { model }
