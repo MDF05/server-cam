@@ -11,11 +11,11 @@ const corsOption = {
     "optionsSuccessStatus": 204
 }
 
-// app.use(
-//     express.urlencoded({
-//         extended: true,
-//     })
-// );
+app.use(
+    express.urlencoded({
+        extended: true,
+    })
+);
 
 app.use(express.json())
 app.use(cors(corsOption))
