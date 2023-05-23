@@ -37,6 +37,6 @@ app.get('/isi', cors(corsConfig), async(req, res) => {
 
 const port = process.env.PORT || 3000;
 const host = 'https://server-cam.vercel.app/';
-app.listen(3000, () => {
+app.listen(3000, host, () => {
     console.log('Your server is listening at http://localhost:3000');
 });
