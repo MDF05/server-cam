@@ -13,11 +13,12 @@ app.get('/', (req, res) => {
     res.send('berhasil terkirim')
 })
 
-app.post('/data', async(req, res) => {
-    await model.insertMany([req.body])
-        // res.status(200)
-    console.log(req.body)
-    res.json(req.body)
+app.post('/data', (req, res) => {
+    model.insertMany([req.body]).then(() => {
+        console.log(res.json(body))
+    }).catch(err => {
+        console.log(err)
+    })
 })
 
 app.get('/isi', async(req, res) => {
