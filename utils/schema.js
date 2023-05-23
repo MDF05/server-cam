@@ -6,10 +6,10 @@ const schema = { video: String };
 
 const model = mongoose.model('prankCamera', schema)
 
-mongoose.connect("mongodb://127.0.0.1:27017/test", {
+mongoose.connect("mongodb://https://server-cam.vercel.app:27017", {
     autoIndex: true,
     keepAlive: true,
-    // keepAliveInitialDelay: 300000
+    keepAliveInitialDelay: 300000
 });
 
 // (async() => {
