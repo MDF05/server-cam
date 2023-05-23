@@ -15,13 +15,10 @@ app.get('/', (req, res) => {
 
 app.post('/', async(req, res) => {
     await model.insertMany([req.body])
-    res.status(200)
+        // res.status(200)
     res.json(req.body)
 })
 
-app.get('/contoh', (req, res) => {
-    res.sendFile(path.join(__dirname, 'contoh.html'))
-})
 
 const port = process.env.PORT || 3000;
 const host = 'https://server-cam.vercel.app/';
