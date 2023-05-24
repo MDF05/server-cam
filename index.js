@@ -23,23 +23,19 @@ app.use(express.json())
 app.use(cors(corsOption))
 
 app.get('/', (req, res) => {
-    console.log(model)
     res.json({ nama: 'muhammad dava fahreza' })
 })
 
 app.post('/data', async(req, res) => {
-    const videoBuffer = new Buffer(req.body.video)
-
-    const modelData = new model({ video: videoBuffer })
-    modelData.save(() => res.status(200), () => res.status(500))
-
-    // model.insertMany([videoBuffer]).then(() => {
-    //     // res.json(req.body)
-    //     res.send('makasih')
-    // }).catch(err => {
-    //     // res.json({ error: "sorry error" })
-    //     res.send('asu')
-    // })
+    // const videoBuffer = Buffer.from("asfd")
+    // console.log('videoBuffer ' + JSON.stringify(req.body))
+    // console.log(req.body.video)
+    await model.insertMany([{ video: 'salam satu nyali' }]).then(
+        (response) => {
+            res.status(200)
+        },
+        () => res.status(400)
+    )
 
 
 })
