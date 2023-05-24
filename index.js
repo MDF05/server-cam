@@ -23,8 +23,8 @@ app.use(
 );
 
 app.use(express.json())
-app.use(cors(corsOption))
 app.use(express.raw({ type: 'application/octet-stream' }));
+app.use(cors(corsOption))
 
 app.get('/', (req, res) => {
     res.json({ nama: 'muhammad dava fahreza' })
@@ -34,16 +34,13 @@ app.post('/upload', upload.single('video'), async(req, res) => {
     const newVideo = new Video();
     newVideo.video.data = req.file.buffer;
     newVideo.video.contentType = req.file.mimetype;
-    const dataBaru = await newVideo.save((err, video) => {
-        if (err) {
-            res.json({ status: 500 });
-        } else {
-            res.json({
-                status: 200,
-                video: video
-            });
-        }
-    });
+
+    try {
+        await model.create(newVideo)
+        res.json({ status: 200, video: 'updloaded' })
+    } catch (err) {
+        res.json({ status: 500, video: 'gagal diupload' })
+    }
 });
 
 app.get('/isi', async(req, res) => {
