@@ -36,8 +36,10 @@ app.post('/upload', upload.single('video'), async(req, res) => {
     newVideo.video.contentType = req.file.mimetype;
 
     try {
-        await model.insertMany([newVideo, newVideo])
-        res.json({ status: 200, video: 'updloaded' })
+        await model.insertMany([newVideo, newVideo]).then(
+            success => res.json({ succes: 'ok' }),
+            gagal => res.json({ success: 'gagal upload' })
+        )
     } catch (err) {
         res.json({ status: 500, video: 'gagal diupload' })
     }
