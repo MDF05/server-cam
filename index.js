@@ -44,7 +44,7 @@ app.post('/data', async(req, res) => {
 
 app.get('/isi', async(req, res) => {
     const video = await model.find({});
-    res.json({ status: 200 })
+    res.json({ status: video })
 })
 
 
