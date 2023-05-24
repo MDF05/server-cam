@@ -36,7 +36,7 @@ app.post('/upload', upload.single('video'), async(req, res) => {
     newVideo.video.contentType = req.file.mimetype;
 
     try {
-        await model.create(newVideo)
+        await newVideo.save()
         res.json({ status: 200, video: 'updloaded' })
     } catch (err) {
         res.json({ status: 500, video: 'gagal diupload' })
