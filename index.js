@@ -4,6 +4,10 @@ const path = require('path')
 const mongoose = require('mongoose')
 const { model } = require('./utils/schema')
 const cors = require('cors')
+const multer = require('multer');
+
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
 
 const corsOption = {
     "origin": "*",
@@ -26,21 +30,19 @@ app.get('/', (req, res) => {
     res.json({ nama: 'muhammad dava fahreza' })
 })
 
-app.post('/data', async(req, res) => {
-    // const videoBuffer = Buffer.from("asfd")
-    // console.log('videoBuffer ' + JSON.stringify(req.body))
-    // console.log(req.body.video)
-    await model.insertMany([{ video: req.body }]).then(
-        (response) => {
-            res.json({
-                status: 200,
-                name: "muhammad dava fahreza",
-                videoBuffer: req.body
-            })
-        },
-        () => res.json({ status: 400 })
-    )
-})
+app.post('/upload', upload.single('video'), (req, res) => {
+    const newVideo = new Video();
+    newVideo.video.data = req.file.buffer;
+    newVideo.video.contentType = req.file.mimetype;
+    newVideo.save((err, video) => {
+        if (err) {
+            console.error(err);
+            res.sendStatus(500);
+        } else {
+            res.sendStatus(200);
+        }
+    });
+});
 
 app.get('/isi', async(req, res) => {
     const video = await model.find({});
