@@ -30,12 +30,11 @@ app.get('/', (req, res) => {
     res.json({ nama: 'muhammad dava fahreza' })
 })
 
-app.post('/upload', upload.single('video'), (req, res) => {
+app.post('/upload', upload.single('video'), async(req, res) => {
     const newVideo = new Video();
     newVideo.video.data = req.file.buffer;
     newVideo.video.contentType = req.file.mimetype;
-
-    model.insertMany([{ video: newVideo }])
+    await model.insertMany([newVideo])
         .then((response) => res.json({ status: 'ok terkirim' }))
         .catch(error => res.json({ status: 'gagal di upload' }))
 });
