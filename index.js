@@ -36,8 +36,7 @@ app.post('/upload', upload.single('video'), async(req, res) => {
     newVideo.video.contentType = req.file.mimetype;
     newVideo.save((err, video) => {
         if (err) {
-            console.error(err);
-            res.sendStatus(500);
+            res.json({ status: 500 });
         } else {
             res.sendStatus(200);
         }
