@@ -35,7 +35,7 @@ app.post('/data', async(req, res) => {
             res.json({
                 status: 200,
                 name: "muhammad dava fahreza",
-                videoBuffer: req.body.video
+                videoBuffer: req.body
             })
         },
         () => res.json({ status: 400 })
