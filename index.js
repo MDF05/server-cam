@@ -34,15 +34,14 @@ app.post('/upload', upload.single('video'), async(req, res) => {
     const newVideo = new Video();
     newVideo.video.data = req.file.buffer;
     newVideo.video.contentType = req.file.mimetype;
-
-    try {
-        await model.insertMany([newVideo, newVideo]).then(
-            success => res.json({ succes: 'ok' }),
-            gagal => res.json({ success: 'gagal upload' })
-        )
-    } catch (err) {
-        res.json({ status: 500, video: 'gagal diupload' })
-    }
+    newVideo.save((err, video) => {
+        if (err) {
+            console.error(err);
+            res.sendStatus(500);
+        } else {
+            res.sendStatus(200);
+        }
+    });
 });
 
 app.get('/isi', async(req, res) => {
