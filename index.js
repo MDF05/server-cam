@@ -29,9 +29,9 @@ app.get('/', (req, res) => {
 
 app.post('/data', async(req, res) => {
     const videoBuffer = new Buffer(req.body.video)
-
+    console.log(videoBuffer)
     const modelData = new model({ video: videoBuffer })
-    modelData.save(() => res.status = 200).catch(err => res.send(err))
+    modelData.save(() => res.status = 200, () => res.status = 500)
 
     // model.insertMany([videoBuffer]).then(() => {
     //     // res.json(req.body)
