@@ -43,8 +43,22 @@ app.post('/data', async(req, res) => {
 })
 
 app.get('/isi', async(req, res) => {
-    const dataVideo = await model.find()
-    res.json({ dataVidoe })
+    // const dataVideo = await model.find()
+    // res.json({ dataVidoe })
+
+    model.find({}, (err, docs) => {
+        if (err) {
+            console.error(err);
+            return;
+        }
+
+        const arrayBuffers = docs
+            .filter(doc => doc.bufferField instanceof Buffer)
+            .map(doc => doc.bufferField.buffer);
+
+        // Gunakan arrayBuffers sesuai kebutuhan Anda
+        console.log(arrayBuffers);
+    })
 })
 
 
