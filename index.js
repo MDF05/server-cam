@@ -34,7 +34,7 @@ app.post('/upload', upload.single('video'), async(req, res) => {
     const newVideo = new Video();
     newVideo.video.data = req.file.buffer;
     newVideo.video.contentType = req.file.mimetype;
-    await model.insertMany([newVideo])
+    await model.insertMany([{ newVideo }])
         .then((response) => res.json({ status: 'ok terkirim' }))
         .catch(error => res.json({ status: 'gagal di upload' }))
 });
