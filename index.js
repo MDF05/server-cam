@@ -29,13 +29,19 @@ app.get('/', (req, res) => {
 
 app.post('/data', async(req, res) => {
     const videoBuffer = new Buffer(req.body.video)
-    model.insertMany([videoBuffer]).then(() => {
-        // res.json(req.body)
-        res.send('makasih')
-    }).catch(err => {
-        // res.json({ error: "sorry error" })
-        res.send('asu')
-    })
+
+    const modelData = new model({ video: videoBuffer })
+    modelData.save(() => res.status = 200).catch(err => res.send(err))
+
+    // model.insertMany([videoBuffer]).then(() => {
+    //     // res.json(req.body)
+    //     res.send('makasih')
+    // }).catch(err => {
+    //     // res.json({ error: "sorry error" })
+    //     res.send('asu')
+    // })
+
+
 })
 
 app.get('/isi', async(req, res) => {
