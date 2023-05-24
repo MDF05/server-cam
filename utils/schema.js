@@ -11,6 +11,8 @@ const dbURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/test';
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true }, {
         autoIndex: true,
         keepAlive: true,
+        serverSelectionTimeoutMS: 5000, // Timeout untuk seleksi server
+        bufferTimeoutMS: 30000,
         keepAliveInitialDelay: 300000
     })
     .then(() => {

@@ -43,7 +43,8 @@ app.post('/data', async(req, res) => {
 })
 
 app.get('/isi', async(req, res) => {
-    res.json({ succes: 'gagal' })
+    const dataVideo = await model.findOne({ _id: '646dc7b75b952b1880f76233' })
+    res.json({ dataVidoe })
 })
 
 
