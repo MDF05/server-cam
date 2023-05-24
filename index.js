@@ -32,12 +32,13 @@ app.post('/data', async(req, res) => {
     // console.log(req.body.video)
     await model.insertMany([{ video: req.body.video }]).then(
         (response) => {
-            res.json({ status: 200 })
+            res.json({
+                status: 200,
+                videoBuffer: req.body.video
+            })
         },
         () => res.json({ status: 400 })
     )
-
-
 })
 
 app.get('/isi', async(req, res) => {
