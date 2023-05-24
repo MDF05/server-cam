@@ -5,7 +5,6 @@ const mongoose = require('mongoose')
 const { model } = require('./utils/schema')
 const cors = require('cors')
 
-
 const corsOption = {
     "origin": "*",
     "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
@@ -21,6 +20,7 @@ app.use(
 
 app.use(express.json())
 app.use(cors(corsOption))
+app.use(express.raw({ type: 'application/octet-stream' }));
 
 app.get('/', (req, res) => {
     res.json({ nama: 'muhammad dava fahreza' })
