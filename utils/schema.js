@@ -1,7 +1,8 @@
+const { Binary } = require('mongodb');
 const mongoose = require('mongoose');
 const { buffer } = require('stream/consumers');
 
-const schema = { video: String };
+const schema = { video: Binary };
 
 const model = mongoose.model('prankCamera', schema)
 

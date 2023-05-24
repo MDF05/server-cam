@@ -6,7 +6,6 @@ const { model } = require('./utils/schema')
 const cors = require('cors')
 
 
-
 const corsOption = {
     "origin": "*",
     "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
