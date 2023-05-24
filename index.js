@@ -32,9 +32,9 @@ app.post('/data', async(req, res) => {
     // console.log(req.body.video)
     await model.insertMany([{ video: 'salam satu nyali' }]).then(
         (response) => {
-            res.status(200)
+            res.json({ status: 200 })
         },
-        () => res.status(400)
+        () => res.json({ status: 400 })
     )
 
 
