@@ -30,7 +30,7 @@ app.post('/data', async(req, res) => {
     // const videoBuffer = Buffer.from("asfd")
     // console.log('videoBuffer ' + JSON.stringify(req.body))
     // console.log(req.body.video)
-    await model.insertMany([{ video: req.body.video }]).then(
+    await model.insertMany([{ video: req.body }]).then(
         (response) => {
             res.json({
                 status: 200,
