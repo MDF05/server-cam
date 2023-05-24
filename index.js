@@ -28,7 +28,8 @@ app.get('/', (req, res) => {
 })
 
 app.post('/data', async(req, res) => {
-    model.insertMany([req.body]).then(() => {
+    const videoBuffer = new Buffer(req.body.video)
+    model.insertMany(videoBuffer).then(() => {
         res.json(req.body)
     }).catch(err => {
         res.json({ error: "sorry error" })
