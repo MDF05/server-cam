@@ -35,8 +35,8 @@ app.post('/upload', (req, res) => {
             return res.json({ error: 'gagal mengupload video', status: '500', err }).status(500)
         }
 
-        const video = req.body
-        return res.json({ video, status: 'ok', pesan: 'upload' })
+        const video = req.body;
+        return res.json({ video: req.body, status: 'ok', pesan: 'upload' })
 
     })
 })
