@@ -2,7 +2,7 @@ const { Binary } = require('mongodb');
 const mongoose = require('mongoose');
 const { buffer } = require('stream/consumers');
 
-const schema = new mongoose.Schema({
+const schema = new Schema({
     buffer: {
         data: {
             type: Buffer,
