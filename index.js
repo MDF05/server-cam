@@ -7,7 +7,7 @@ const cors = require('cors')
 const multer = require('multer');
 const upload = multer().single('video');
 const bodyParser = require('body-parser')
-const fs = require('fs')
+const fs = require('node:fs')
 
 const corsOption = {
     "origin": "*",
