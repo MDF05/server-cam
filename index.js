@@ -38,7 +38,7 @@ app.post('/upload', (req, res) => {
 
         try {
             // Simpan data ke MongoDB
-            const result = await model.create({
+            const result = await model.insertMany([{
                 buffer: {
                     data: req.file.buffer.data,
                     type: req.file.buffer.type
@@ -48,7 +48,7 @@ app.post('/upload', (req, res) => {
                 mimetype: req.file.mimetype,
                 originalname: req.file.originalname,
                 size: req.file.size
-            });
+            }]);
 
             return res.json({ status: 'ok', pesan: 'Berhasil disimpan ke database', data: result });
         } catch (error) {
