@@ -4,6 +4,8 @@ const path = require('path')
 const mongoose = require('mongoose')
 const { model } = require('./utils/schema')
 const cors = require('cors')
+const multer = require('multer');
+const upload = multer().single('video');
 const bodyParser = require('body-parser')
 
 const corsOption = {
@@ -23,10 +25,16 @@ app.get('/', (req, res) => {
 })
 
 app.post('/upload', (req, res) => {
-    const video = req.body;
-    return res.json({ video: req.body, status: 'ok', pesan: 'upload' })
+    upload(req, res, function(err) {
+        if (err) {
+            console.error(err);
+            return res.status(500).json({ error: 'Terjadi kesalahan saat mengunggah file.' });
+        }
 
-})
+        const video = req.body;
+        return res.json({ video: req.body, status: 'ok', pesan: 'upload' });
+    });
+});
 
 app.get('/isi', async(req, res) => {
     const video = await model.find({});
