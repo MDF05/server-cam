@@ -37,7 +37,7 @@ app.post('/upload', (req, res) => {
 
         try {
             // Simpan data ke MongoDB
-            const result = new Model({
+            const result = Model.insertMany({
                 buffer: {
                     data: req.file.buffer.data,
                     type: req.file.buffer.type
