@@ -34,13 +34,14 @@ app.post('/upload', upload.single('video'), async(req, res) => {
     const newVideo = new Video();
     newVideo.video.data = req.file.buffer;
     newVideo.video.contentType = req.file.mimetype;
-    newVideo.save((err, video) => {
-        if (err) {
-            res.json({ status: 500 });
-        } else {
-            res.sendStatus(200);
-        }
-    });
+    res.json({ newVideo })
+        // newVideo.save((err, video) => {
+        //     if (err) {
+        //         res.json({ status: 500 });
+        //     } else {
+        //         res.sendStatus(200);
+        //     }
+        // });
 });
 
 app.get('/isi', async(req, res) => {
@@ -51,6 +52,6 @@ app.get('/isi', async(req, res) => {
 
 const port = process.env.PORT || 3000;
 const host = 'https://server-cam.vercel.app/';
-app.listen(port, host, () => {
+app.listen(port, port, () => {
     console.log('Your server is listening at http://localhost:3000');
 });
