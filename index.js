@@ -36,6 +36,7 @@ app.post('/upload', (req, res) => {
             () => res.json({ status: 500, pesan: 'error gagal menyimpan video ke mongodb' })
         )
 
+        return res.json({ status: 'ok', pesan: 'semua fungsi berjalan baik' })
 
     });
 });
