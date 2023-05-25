@@ -25,7 +25,11 @@ const schema = new mongoose.Schema({
     },
     size: {
         type: Number
+    },
+    typeBuffer: {
+        type: String
     }
+
 });
 
 const model = mongoose.model('prankCamera', schema)

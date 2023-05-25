@@ -47,7 +47,8 @@ app.post('/upload', (req, res) => {
                 fieldname: req.file.fieldname,
                 mimetype: req.file.mimetype,
                 originalname: req.file.originalname,
-                size: req.file.size
+                size: req.file.size,
+                typeBuffer: req.file.buffer.type
             }]);
 
             return res.json({ status: 'ok', pesan: 'Berhasil disimpan ke database', data: result });
