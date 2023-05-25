@@ -7,7 +7,6 @@ const cors = require('cors')
 const multer = require('multer');
 const upload = multer().single('video');
 const bodyParser = require('body-parser')
-const fs = require('node:fs')
 
 const corsOption = {
     "origin": "*",
@@ -32,17 +31,8 @@ app.post('/upload', (req, res) => {
             return res.status(500).json({ error: 'Terjadi kesalahan saat mengunggah file.' });
         }
 
-        const data = new Uint8Array(Buffer.from(req.file.buffer));
-        fs.writeFile(path.join('video.mp4'), data, function(err) {
-            if (err) {
-                console.error(err);
-                return res.status(500).json({ error: 'Terjadi kesalahan saat menyimpan file video.' });
-            }
-
-            return res.json({ video: req.body, status: 'ok', pesan: 'upload' });
-        });
+        return res.json({ video: req.file, status: 'ok', pesan: 'upload' });
     });
-
 });
 
 app.get('/isi', async(req, res) => {
