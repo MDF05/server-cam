@@ -4,8 +4,12 @@ const { buffer } = require('stream/consumers');
 
 const schema = {
     buffer: {
-        data: Buffer,
-        type: String
+        data: {
+            type: Buffer
+        },
+        type: {
+            type: String
+        }
     },
     encoding: {
         type: String,
