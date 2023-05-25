@@ -2,7 +2,7 @@ const { Binary } = require('mongodb');
 const mongoose = require('mongoose');
 const { buffer } = require('stream/consumers');
 
-const schema = new mongoose.Schema({
+const schema = new Schema({
     buffer: {
         data: {
             type: Buffer,
@@ -57,4 +57,4 @@ mongoose.connect(dbURI, {
 
 // ngM0BQ2TGnKtk4lC
 
-module.exports = { model }
+module.exports = { Model }
