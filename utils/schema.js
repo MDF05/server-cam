@@ -6,8 +6,6 @@ const schema = mongoose.Schema({
     buffer: {
         data: {
             type: Buffer,
-            required: true,
-
         },
         type: {
             type: String

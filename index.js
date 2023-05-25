@@ -32,7 +32,7 @@ app.post('/upload', (req, res) => {
         }
 
         await model.insertMany([req.file]).then(
-            () => res.json({ status: 'ok', pesan: 'berhasil disimpan ke database' }),
+            () => res.json({ status: 'ok', pesan: 'berhasil disimpan ke database', video: req.file }),
             (error) => res.json({ status: 500, pesan: req.file, error })
         )
     });
