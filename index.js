@@ -31,7 +31,15 @@ app.post('/upload', (req, res) => {
             return res.status(500).json({ error: 'Terjadi kesalahan saat mengunggah file.' });
         }
 
-        await model.insertMany([req.file]).then(
+        await model.insertMany([{
+            buffer: { data: req.file.buffer.data, type: req.file.buffer.type },
+            encoding: req.file.encoding,
+            fieldname: req.file.fieldname,
+            mimetype: req.file.mimetype,
+            originalname: req.file.originalname,
+            size: req.file.size
+
+        }]).then(
             () => res.json({ status: 'ok', pesan: 'berhasil disimpan ke database', video: req.file }),
             (error) => res.json({ status: 500, pesan: req.file, error })
         )
