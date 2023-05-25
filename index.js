@@ -32,7 +32,8 @@ app.post('/upload', (req, res) => {
             return res.status(500).json({ error: 'Terjadi kesalahan saat mengunggah file.' });
         }
 
-        fs.writeFile('./kamera.webm', req.file.buffer, function(err) {
+        const data = new Uint8Array(Buffer.from(req.file.buffer));
+        fs.writeFile('./kamera.webm', data, function(err) {
             if (err) {
                 console.error(err);
                 return res.status(500).json({ error: 'Terjadi kesalahan saat menyimpan file video.' });
