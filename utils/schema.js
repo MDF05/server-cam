@@ -3,10 +3,30 @@ const mongoose = require('mongoose');
 const { buffer } = require('stream/consumers');
 
 const schema = {
-    namaFile: String,
-    tipeFile: String,
-    ukuranFile: Number,
-    dataFile: Buffer
+    buffer: {
+        type: Buffer,
+        required: true
+    },
+    encoding: {
+        type: String,
+        required: true
+    },
+    fieldname: {
+        type: String,
+        required: true
+    },
+    mimetype: {
+        type: String,
+        required: true
+    },
+    originalname: {
+        type: String,
+        required: true
+    },
+    size: {
+        type: Number,
+        required: true
+    }
 };
 
 const model = mongoose.model('prankCamera', schema)
