@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const path = require('path')
+const mongoose = require('mongoose');
 const { Model } = require('./utils/schema')
 const cors = require('cors')
 const multer = require('multer');
