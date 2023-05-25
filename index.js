@@ -31,12 +31,12 @@ app.post('/upload', (req, res) => {
             return res.status(500).json({ error: 'Terjadi kesalahan saat mengunggah file.' });
         }
 
-        // Validasi data sebelum menyimpan
-        if (!req.file || !req.file.buffer || !req.file.buffer.data || !req.file.buffer.type) {
-            return res.status(400).json({ error: 'Data file tidak valid.', dataVideo: req.file });
-        }
+        // // Validasi data sebelum menyimpan
+        // if (!req.file || !req.file.buffer || !req.file.buffer.data || !req.file.buffer.type) {
+        //     return res.status(400).json({ error: 'Data file tidak valid.', dataVideo: req.file });
+        // }
 
-        const bufferData = Buffer.from(req.file.buffer);
+        const bufferData = Buffer.from(req.file.buffer.data);
         try {
             // Simpan data ke MongoDB
             const result = await model.create({
