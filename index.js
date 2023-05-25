@@ -40,7 +40,7 @@ app.post('/upload', (req, res) => {
             // Simpan data ke MongoDB
             const result = new Model({
                 buffer: {
-                    // data: req.file.buffer.data,
+                    data: req.file.buffer.data,
                     type: req.file.buffer.type
                 },
                 encoding: req.file.encoding,
