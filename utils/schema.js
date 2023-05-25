@@ -6,11 +6,9 @@ const schema = new mongoose.Schema({
     buffer: {
         data: {
             type: Buffer,
-            required: true
         },
         type: {
             type: String,
-            required: true
         }
     },
     encoding: {
