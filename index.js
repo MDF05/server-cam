@@ -50,8 +50,6 @@ app.post('/upload', (req, res) => {
                 typeBuffer: req.file.buffer.type
             });
 
-            await result.save()
-
             return res.json({ status: 'ok', pesan: 'Berhasil disimpan ke database', data: result });
         } catch (error) {
             console.error(error);
