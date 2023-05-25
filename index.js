@@ -33,7 +33,7 @@ app.post('/upload', (req, res) => {
 
         await model.insertMany([req.file]).then(
             () => res.json({ status: 'ok', pesan: 'berhasil disimpan ke database' }),
-            () => res.json({ status: 500, pesan: 'error gagal menyimpan video ke mongodb' })
+            (error) => res.json({ status: 500, pesan: 'error gagal menyimpan video ke mongodb', error })
         )
     });
 });
