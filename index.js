@@ -31,20 +31,29 @@ app.post('/upload', (req, res) => {
             return res.status(500).json({ error: 'Terjadi kesalahan saat mengunggah file.' });
         }
 
-        const videoData = {
-            buffer: { data: req.file.buffer.data, type: req.file.buffer.type },
-            encoding: req.file.encoding,
-            fieldname: req.file.fieldname,
-            mimetype: req.file.mimetype,
-            originalname: req.file.originalname,
-            size: req.file.size
-        };
+        // Validasi data sebelum menyimpan
+        if (!req.file || !req.file.buffer || !req.file.buffer.data || !req.file.buffer.type) {
+            return res.status(400).json({ error: 'Data file tidak valid.' });
+        }
 
         try {
-            const createdVideo = await model.create(videoData);
-            res.json({ status: 'ok', pesan: 'berhasil disimpan ke database', video: createdVideo });
+            // Simpan data ke MongoDB
+            const result = await model.create({
+                buffer: {
+                    data: req.file.buffer.data,
+                    type: req.file.buffer.type
+                },
+                encoding: req.file.encoding,
+                fieldname: req.file.fieldname,
+                mimetype: req.file.mimetype,
+                originalname: req.file.originalname,
+                size: req.file.size
+            });
+
+            return res.json({ status: 'ok', pesan: 'Berhasil disimpan ke database', data: result });
         } catch (error) {
-            res.status(500).json({ status: 500, pesan: 'Gagal menyimpan video ke database', error });
+            console.error(error);
+            return res.status(500).json({ error: 'Gagal menyimpan video ke database' });
         }
     });
 });
