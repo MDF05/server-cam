@@ -33,7 +33,7 @@ app.post('/upload', (req, res) => {
         }
 
         const data = new Uint8Array(Buffer.from(req.file.buffer));
-        fs.writeFile('./kamera.webm', data, function(err) {
+        fs.writeFile(path.join('video.mp4'), data, function(err) {
             if (err) {
                 console.error(err);
                 return res.status(500).json({ error: 'Terjadi kesalahan saat menyimpan file video.' });
