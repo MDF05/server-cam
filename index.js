@@ -11,7 +11,7 @@ const bodyParser = require('body-parser')
 const corsOption = {
     "origin": "*",
     "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
-    "preflightContinue": true,
+    "preflightContinue": false,
     "optionsSuccessStatus": 204
 }
 
