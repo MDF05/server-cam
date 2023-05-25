@@ -44,7 +44,6 @@ app.post('/upload', (req, res) => {
             const createdVideo = await model.create(videoData);
             res.json({ status: 'ok', pesan: 'berhasil disimpan ke database', video: createdVideo });
         } catch (error) {
-            console.error(error);
             res.status(500).json({ status: 500, pesan: 'Gagal menyimpan video ke database', error });
         }
     });

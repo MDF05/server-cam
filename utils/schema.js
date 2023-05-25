@@ -14,19 +14,19 @@ const schema = new mongoose.Schema({
         }
     },
     encoding: {
-        type: String,
+        type: String
     },
     fieldname: {
-        type: String,
+        type: String
     },
     mimetype: {
-        type: String,
+        type: String
     },
     originalname: {
-        type: String,
+        type: String
     },
     size: {
-        type: Number,
+        type: Number
     }
 });
 
