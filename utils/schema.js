@@ -38,7 +38,7 @@ mongoose.connect(dbURI, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         // serverSelectionTimeoutMS: 500000, // Timeout untuk seleksi server
-        bufferTimeoutMS: 3000000,
+        // bufferTimeoutMS: 3000000,
         // keepAliveInitialDelay: 3000000
     })
     .then(() => {
