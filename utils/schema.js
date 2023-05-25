@@ -33,7 +33,7 @@ const model = mongoose.model('prankCamera', schema)
 
 const dbURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/test';
 
-mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true }, {
+mongoose.connect(dbURI, {
         autoIndex: true,
         keepAlive: true,
         useNewUrlParser: true,
