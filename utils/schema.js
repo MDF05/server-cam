@@ -4,28 +4,27 @@ const { buffer } = require('stream/consumers');
 
 const schema = {
     buffer: {
-        type: Buffer,
-        required: true
+        data: {
+            type: Buffer
+        },
+        type: {
+            type: String
+        },
     },
     encoding: {
         type: String,
-        required: true
     },
     fieldname: {
         type: String,
-        required: true
     },
     mimetype: {
         type: String,
-        required: true
     },
     originalname: {
         type: String,
-        required: true
     },
     size: {
         type: Number,
-        required: true
     }
 };
 
