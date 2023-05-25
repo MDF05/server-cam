@@ -36,7 +36,7 @@ app.post('/upload', (req, res) => {
         }
 
         const video = req.body
-        res.json(video)
+        return res.json(video)
 
     })
 })
