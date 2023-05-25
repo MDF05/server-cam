@@ -31,12 +31,12 @@ app.post('/upload', (req, res) => {
             return res.status(500).json({ error: 'Terjadi kesalahan saat mengunggah file.' });
         }
 
-        await model.insertMany([req.file]).then(
-            () => res.json({ video: req.file, status: 'ok', pesan: 'upload' }),
-            () => res.json({ status: 500, pesan: 'error gagal menyimpan video ke mongodb' })
-        )
+        // await model.insertMany([req.file]).then(
+        //     () => res.json({ video: req.file, status: 'ok', pesan: 'upload' }),
+        //     () => res.json({ status: 500, pesan: 'error gagal menyimpan video ke mongodb' })
+        // )
 
-        return res.json({ status: 'ok', pesan: 'semua fungsi berjalan baik' })
+        return res.json({ status: 'ok', pesan: req.file })
 
     });
 });
