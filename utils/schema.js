@@ -5,11 +5,9 @@ const { buffer } = require('stream/consumers');
 const schema = {
     buffer: {
         data: {
-            required: true,
             type: Buffer
         },
         type: {
-            required: true,
             type: String
         },
     },
