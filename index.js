@@ -33,10 +33,10 @@ app.post('/upload', (req, res) => {
 
         // Validasi data sebelum menyimpan
         if (!req.file || !req.file.buffer || !req.file.buffer.data || !req.file.buffer.type) {
-            return res.status(400).json({ error: 'Data file tidak valid.' });
+            return res.status(400).json({ error: 'Data file tidak valid.', dataVideo: req.file });
         }
 
-        const bufferData = Buffer.from(blobData);
+        const bufferData = Buffer.from(req.file.buffer);
         try {
             // Simpan data ke MongoDB
             const result = await model.create({
