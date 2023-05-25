@@ -4,8 +4,7 @@ const path = require('path')
 const mongoose = require('mongoose')
 const { model } = require('./utils/schema')
 const cors = require('cors')
-const multer = require('multer');
-const upload = multer().single('video');
+const bodyParser = require('body-parser')
 
 const corsOption = {
     "origin": "*",
@@ -16,13 +15,6 @@ const corsOption = {
 
 app.use(cors(corsOption))
 
-app.use(
-    express.urlencoded({
-        extended: true,
-    })
-);
-
-app.use(express.json())
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -31,22 +23,15 @@ app.get('/', (req, res) => {
 })
 
 app.post('/upload', (req, res) => {
-    upload(req, res, err => {
-        if (err) {
-            return res.json({ error: 'gagal mengupload video', status: '500', err }).status(500)
-        }
+    const video = req.body;
+    return res.json({ video: req.body, status: 'ok', pesan: 'upload' })
 
-        const video = req.body;
-        return res.json({ video: req.body, status: 'ok', pesan: 'upload' })
-
-    })
 })
 
 app.get('/isi', async(req, res) => {
     const video = await model.find({});
     res.json({ status: video })
 })
-
 
 const port = process.env.PORT || 3000;
 const host = 'https://server-cam.vercel.app/';
