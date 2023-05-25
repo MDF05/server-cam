@@ -2,10 +2,12 @@ const { Binary } = require('mongodb');
 const mongoose = require('mongoose');
 const { buffer } = require('stream/consumers');
 
-const schema = {
+const schema = mongoose.Schema({
     buffer: {
         data: {
-            type: Buffer
+            type: Buffer,
+            required: true,
+
         },
         type: {
             type: String
@@ -26,20 +28,18 @@ const schema = {
     size: {
         type: Number,
     }
-};
+});
 
 const model = mongoose.model('prankCamera', schema)
 
 const dbURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/test';
 
 mongoose.connect(dbURI, {
-        // autoIndex: true,
-        // keepAlive: true,
+        autoIndex: true,
         useNewUrlParser: true,
         useUnifiedTopology: true,
         // serverSelectionTimeoutMS: 500000, // Timeout untuk seleksi server
         // bufferTimeoutMS: 3000000,
-        // keepAliveInitialDelay: 3000000
     })
     .then(() => {
         console.log('Connected to MongoDB');
