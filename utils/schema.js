@@ -32,7 +32,7 @@ const schema = new mongoose.Schema({
 
 });
 
-const model = mongoose.model('prankCamera', schema)
+const Model = mongoose.model('prankCamera', schema)
 
 const dbURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/test';
 

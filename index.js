@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const path = require('path')
 const mongoose = require('mongoose')
-const { model } = require('./utils/schema')
+const { Model } = require('./utils/schema')
 const cors = require('cors')
 const multer = require('multer');
 const upload = multer().single('video');
@@ -38,7 +38,7 @@ app.post('/upload', (req, res) => {
 
         try {
             // Simpan data ke MongoDB
-            const result = await model.insertOne({
+            const result = new Model({
                 buffer: {
                     // data: req.file.buffer.data,
                     type: req.file.buffer.type
@@ -60,7 +60,7 @@ app.post('/upload', (req, res) => {
 });
 
 app.get('/isi', async(req, res) => {
-    const video = await model.find({});
+    const video = await Model.find({});
     res.json({ status: video })
 })
 
