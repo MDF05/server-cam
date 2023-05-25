@@ -33,8 +33,8 @@ const model = mongoose.model('prankCamera', schema)
 const dbURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/test';
 
 mongoose.connect(dbURI, {
-        autoIndex: true,
-        keepAlive: true,
+        // autoIndex: true,
+        // keepAlive: true,
         useNewUrlParser: true,
         useUnifiedTopology: true,
         // serverSelectionTimeoutMS: 500000, // Timeout untuk seleksi server
