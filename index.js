@@ -5,9 +5,7 @@ const mongoose = require('mongoose')
 const { model } = require('./utils/schema')
 const cors = require('cors')
 const multer = require('multer');
-
-const storage = multer.memoryStorage();
-const upload = multer({ storage });
+const upload = multer().single('video');
 
 const corsOption = {
     "origin": "*",
@@ -15,6 +13,8 @@ const corsOption = {
     "preflightContinue": false,
     "optionsSuccessStatus": 204
 }
+
+app.use(cors(corsOption))
 
 app.use(
     express.urlencoded({
@@ -24,25 +24,22 @@ app.use(
 
 app.use(express.json())
 app.use(express.raw({ type: 'application/octet-stream' }));
-app.use(cors(corsOption))
 
 app.get('/', (req, res) => {
     res.json({ nama: 'muhammad dava fahreza' })
 })
 
-app.post('/upload', upload.single('video'), async(req, res) => {
-    const newVideo = new Video();
-    newVideo.video.data = req.file.buffer;
-    newVideo.video.contentType = req.file.mimetype;
-    res.json({ newVideo })
-        // newVideo.save((err, video) => {
-        //     if (err) {
-        //         res.json({ status: 500 });
-        //     } else {
-        //         res.sendStatus(200);
-        //     }
-        // });
-});
+app.post('/upload', (req, res) => {
+    upload(req, res, err => {
+        if (err) {
+            return res.json({ error: 'gagal mengupload video', status: '500', err }).status(500)
+        }
+
+        const video = req.body
+        res.json(video)
+
+    })
+})
 
 app.get('/isi', async(req, res) => {
     const video = await model.find({});
