@@ -9,7 +9,7 @@ const bodyParser = require('body-parser')
 
 const storage = multer.diskStorage({
     destination: function(req, file, cb) {
-        cb(null, './public/uploads/');
+        cb(null, 'public/uploads/');
     },
     filename: function(req, file, cb) {
         cb(null, file.fieldname);
@@ -34,7 +34,7 @@ app.get('/', (req, res) => {
     res.json({ nama: 'muhammad dava fahreza' })
 })
 
-app.post('/upload', async(req, res) => {
+app.post('/upload', upload.single('video'), async(req, res) => {
     return res.json({ name: 'muhammad dava fahreza' })
         // try {
         //     const { originalname, path } = req.file;
