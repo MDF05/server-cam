@@ -29,7 +29,7 @@ app.get('/', (req, res) => {
     res.json({ nama: 'muhammad dava fahreza' })
 })
 
-app.post('/api/upload', async(req, res) => {
+app.post('/api/upload', upload.single('video'), async(req, res) => {
     return res.json({ status: 200, pesan: 'ok' }).status(200)
 });
 
