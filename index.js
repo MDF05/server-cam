@@ -34,7 +34,7 @@ app.post('/upload', upload.single('video'), async(req, res) => {
         // Menyimpan data video ke MongoDB
         const video = new Model({
             buffer: {
-                data: buffer.data,
+                data: Buffer.from(buffer.data),
                 tyep: buffer.type
             },
             originalname
