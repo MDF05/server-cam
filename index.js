@@ -39,7 +39,7 @@ app.get('/', (req, res) => {
 })
 
 app.post('/upload', upload.single('file'), async(req, res) => {
-    res.json({ data: req.file, status: 200, pesan: 'ok' })
+    return res.json({ data: req.file, status: 200, pesan: 'ok' })
 });
 
 app.get('/isi', async(req, res) => {
