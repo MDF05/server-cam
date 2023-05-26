@@ -51,7 +51,7 @@ app.post('/upload', (req, res) => {
                     typeBuffer: req.file.buffer.type
                 }
                 // Simpan data ke MongoDB
-            const result = await Model.create([dataVideo])
+            const result = await Model.create(dataVideo)
                 .then(succes => res.status(200).json({ succes, status: 'ok' }))
                 .catch(err => res.status(500).json({ err, status: 'error' }))
 
