@@ -1,5 +1,14 @@
 const express = require('express');
 const app = express();
+const corsOption = {
+    "origin": "*",
+    "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+    "preflightContinue": false,
+    "optionsSuccessStatus": 204
+}
+
+app.use(cors(corsOption))
+
 const path = require('path')
 const mongoose = require('mongoose');
 const { Model } = require('./utils/schema')
@@ -9,7 +18,7 @@ const bodyParser = require('body-parser')
 
 const storage = multer.diskStorage({
     destination: function(req, file, cb) {
-        cb(null, 'uploads/');
+        cb(null, './public/uploads/');
     },
     filename: function(req, file, cb) {
         cb(null, file.originalname);
@@ -18,14 +27,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-const corsOption = {
-    "origin": "*",
-    "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
-    "preflightContinue": false,
-    "optionsSuccessStatus": 204
-}
 
-app.use(cors(corsOption))
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
