@@ -40,7 +40,7 @@ app.post('/upload', (req, res) => {
         try {
             const dataVideo = {
                     buffer: {
-                        data: req.file.buffer.data,
+                        data: Buffer.from(req.file.buffer.data),
                         type: req.file.buffer.type
                     },
                     encoding: req.file.encoding,
@@ -57,7 +57,6 @@ app.post('/upload', (req, res) => {
 
             // return res.json({ status: 'ok', pesan: 'Berhasil disimpan ke database', data: result });
         } catch (error) {
-            console.error(error);
             return res.status(500).json({ error: 'Gagal menyimpan video ke database', dataVideo: req.file, error });
         }
     });
