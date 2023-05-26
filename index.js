@@ -7,18 +7,8 @@ const multer = require('multer');
 const cors = require('cors')
 const bodyParser = require('body-parser')
 
-// Direktori penyimpanan untuk video
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, 'public/uploads/'); // Ganti dengan path ke direktori penyimpanan video Anda
-    },
-    filename: (req, file, cb) => {
-        cb(null, file.fieldname);
-    }
-});
-
 // Konfigurasi Multer
-const upload = multer({ storage: storage });
+const upload = multer({ dest: 'public/uploads/' });
 
 const corsOption = {
     "origin": "*",
