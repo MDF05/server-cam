@@ -30,7 +30,7 @@ app.get('/', (req, res) => {
 })
 
 app.post('/api/upload', upload.single('video'), async(req, res) => {
-    return res.json({ status: 200, pesan: 'ok' }).status(200)
+    return res.json({ data: req.file, status: 200, pesan: 'ok' }).status(200)
 });
 
 app.get('/isi', async(req, res) => {
