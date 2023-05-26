@@ -7,16 +7,8 @@ const multer = require('multer');
 const cors = require('cors')
 const bodyParser = require('body-parser')
 
-const storage = multer.diskStorage({
-    destination: function(req, file, cb) {
-        cb(null, 'public/uploads/');
-    },
-    filename: function(req, file, cb) {
-        cb(null, file.fieldname);
-    }
-});
-
-const upload = multer({ storage });
+const storage = multer.memoryStorage()
+const upload = multer({ storage: storage })
 
 const corsOption = {
     "origin": "*",
@@ -35,7 +27,7 @@ app.get('/', (req, res) => {
 })
 
 app.post('/upload', upload.single('video'), async(req, res) => {
-    return res.json({ name: 'muhammad dava fahreza' })
+    return res.json({ name: 'muhammad dava fahreza', data: req.file })
         // try {
         //     const { originalname, path } = req.file;
 
