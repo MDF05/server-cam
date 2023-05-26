@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const { Model } = require('./utils/schema')
 const cors = require('cors')
 const multer = require('multer');
-const upload = multer({ dest: './public/uploads/' });
+const upload = multer({ dest: path.join(__dirname, './public/uploads/') });
 const bodyParser = require('body-parser')
 
 const corsOption = {
