@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const { Model } = require('./utils/schema')
 const cors = require('cors')
 const multer = require('multer');
-const upload = multer().array('video');
+const upload = multer({ dest: './public/uploads/' }).single('video');
 const bodyParser = require('body-parser')
 
 const corsOption = {
