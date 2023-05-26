@@ -8,7 +8,21 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 
 // Konfigurasi Multer
-const storage = multer.memoryStorage()
+const { GridFsStorage } = require('multer-gridfs-storage');
+
+// Konfigurasi penyimpanan GridFS
+const storage = new GridFsStorage({
+    url: "mongodb+srv://palen:ngM0BQ2TGnKtk4lC@dava.v4rbver.mongodb.net/",
+    options: { useNewUrlParser: true, useUnifiedTopology: true },
+    file: (req, file) => {
+        return {
+            bucketName: 'uploads', // Nama bucket/GridFS koleksi yang akan digunakan
+            filename: file.originalname, // Gunakan nama asli file
+        };
+    },
+});
+
+// Buat middleware upload dengan Multer
 const upload = multer({ storage: storage });
 
 const corsOption = {
