@@ -25,16 +25,11 @@ app.get('/', (req, res) => {
 })
 
 app.post('/upload', upload.single('video'), async(req, res) => {
-    if (err) {
-        console.error(err);
-        return res.status(500).json({ error: 'Terjadi kesalahan saat mengunggah file.' });
-    }
 
     // Validasi data sebelum menyimpan
     if (!req.file || !req.file.buffer || !req.file.buffer.data || !req.file.buffer.type) {
         return res.status(400).json({ error: 'Data file tidak valid. atau kosong', dataVideo: req.file });
     }
-
 
     try {
         const dataVideo = {
