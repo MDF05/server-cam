@@ -8,7 +8,8 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 
 // Konfigurasi Multer
-const upload = multer({ dest: 'public/uploads/' });
+const storage = multer.memoryStorage()
+const upload = multer({ storage: storage });
 
 const corsOption = {
     "origin": "*",
