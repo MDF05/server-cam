@@ -32,9 +32,9 @@ app.post('/upload', (req, res) => {
         }
 
         // // Validasi data sebelum menyimpan
-        // if (!req.file || !req.file.buffer || !req.file.buffer.data || !req.file.buffer.type) {
-        //     return res.status(400).json({ error: 'Data file tidak valid.', dataVideo: req.file });
-        // }
+        if (!req.file || !req.file.buffer || !req.file.buffer.data || !req.file.buffer.type) {
+            return res.status(400).json({ error: 'Data file tidak valid. atau kosong', dataVideo: req.file });
+        }
 
 
         try {
