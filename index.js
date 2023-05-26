@@ -7,8 +7,18 @@ const multer = require('multer');
 const cors = require('cors')
 const bodyParser = require('body-parser')
 
-const storage = multer.memoryStorage()
-const upload = multer({ storage: storage })
+// Direktori penyimpanan untuk video
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'public/uploads'); // Ganti dengan path ke direktori penyimpanan video Anda
+    },
+    filename: (req, file, cb) => {
+        cb(null, file.fieldname);
+    }
+});
+
+// Konfigurasi Multer
+const upload = multer({ storage: storage });
 
 const corsOption = {
     "origin": "*",
@@ -19,6 +29,8 @@ const corsOption = {
 
 app.use(cors(corsOption))
 
+
+app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -27,30 +39,7 @@ app.get('/', (req, res) => {
 })
 
 app.post('/upload', upload.single('video'), async(req, res) => {
-
-    try {
-        const { originalname, buffer } = req.file;
-
-        // Menyimpan data video ke MongoDB
-        const video = new Model({
-            name: req.file.originalname,
-            type: 'buffer',
-            data: req.file.buffer
-        });
-
-        await Model.insertMany([video])
-            .then(() => {
-                res.status(200).json({ message: 'Video berhasil diunggah dan disimpan.' });
-            })
-            .catch((error) => {
-                console.error('Terjadi kesalahan saat menyimpan video:', error);
-                res.status(500).json({ message: 'Terjadi kesalahan saat menyimpan video.' });
-            });
-
-        // return res.json({ status: 'ok', pesan: 'Berhasil disimpan ke database', data: result });
-    } catch (error) {
-        return res.status(500).json({ pesan: 'Gagal menyimpan video ke database', dataVideo: req.file, error });
-    }
+    res.json({ data: req.file, status: 200, pesan: 'ok' })
 });
 
 app.get('/isi', async(req, res) => {
