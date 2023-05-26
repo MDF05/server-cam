@@ -5,7 +5,7 @@ const { buffer } = require('stream/consumers');
 const schema = mongoose.Schema({
     buffer: {
         data: {
-            type: [Buffer],
+            type: Buffer,
         },
         type: {
             type: String,
