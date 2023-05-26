@@ -10,7 +10,7 @@ const bodyParser = require('body-parser')
 // Direktori penyimpanan untuk video
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, 'public/uploads'); // Ganti dengan path ke direktori penyimpanan video Anda
+        cb(null, 'public/uploads/'); // Ganti dengan path ke direktori penyimpanan video Anda
     },
     filename: (req, file, cb) => {
         cb(null, file.fieldname);
