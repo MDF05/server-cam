@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const { Model } = require('./utils/schema')
 const cors = require('cors')
 const multer = require('multer');
-const upload = multer().single('video');
+const upload = multer();
 const bodyParser = require('body-parser')
 
 const corsOption = {
@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
     res.json({ nama: 'muhammad dava fahreza' })
 })
 
-app.post('/upload', upload, async(req, res) => {
+app.post('/upload', upload.single('video'), async(req, res) => {
     if (err) {
         console.error(err);
         return res.status(500).json({ error: 'Terjadi kesalahan saat mengunggah file.' });
