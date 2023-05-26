@@ -1,11 +1,11 @@
 const express = require('express');
+const app = express();
 const path = require('path')
 const mongoose = require('mongoose');
 const { Model } = require('./utils/schema')
 const multer = require('multer');
 const cors = require('cors')
 const bodyParser = require('body-parser')
-const app = express();
 
 const storage = multer.diskStorage({
     destination: function(req, file, cb) {
