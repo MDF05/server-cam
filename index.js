@@ -49,7 +49,7 @@ app.post('/upload', upload.single('video'), async(req, res) => {
                 res.status(500).json({ message: 'Terjadi kesalahan saat menyimpan video.' });
             });
 
-        return res.json({ status: 'ok', pesan: 'Berhasil disimpan ke database', data: result });
+        // return res.json({ status: 'ok', pesan: 'Berhasil disimpan ke database', data: result });
     } catch (error) {
         return res.status(500).json({ pesan: 'Gagal menyimpan video ke database', dataVideo: req.file, error });
     }
