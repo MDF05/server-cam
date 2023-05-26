@@ -28,8 +28,8 @@ app.get('/', (req, res) => {
 
 app.post('/upload', upload.single('video'), async(req, res) => {
 
-    const { originalname, buffer } = req.file;
-    return res.json({ originalname, buffer })
+    // const { originalname, buffer } = req.file;
+    return res.json({ data: req.file })
         // try {
         //     const { originalname, buffer } = req.file;
 
