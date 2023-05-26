@@ -38,7 +38,7 @@ app.get('/', (req, res) => {
     res.json({ nama: 'muhammad dava fahreza' })
 })
 
-app.post('/upload', upload.single('video'), async(req, res) => {
+app.post('/upload', upload.single('file'), async(req, res) => {
     res.json({ data: req.file, status: 200, pesan: 'ok' })
 });
 
