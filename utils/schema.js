@@ -4,8 +4,11 @@ const { buffer } = require('stream/consumers');
 
 
 const Schema = new mongoose.Schema({
-    title: String,
-    path: String
+    buffer: {
+        data: Buffer,
+        type: String
+    },
+    originalname: String
 })
 
 

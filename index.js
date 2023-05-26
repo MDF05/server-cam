@@ -28,28 +28,32 @@ app.get('/', (req, res) => {
 
 app.post('/upload', upload.single('video'), async(req, res) => {
     return res.json({ name: 'muhammad dava fahreza', data: req.file })
-        // try {
-        //     const { originalname, path } = req.file;
 
-    //     // Menyimpan data video ke MongoDB
-    //     const video = new Model({
-    //         title: originalname,
-    //         path: path
-    //     });
+    try {
+        const { originalname, buffer } = req.file;
 
-    //     video.save()
-    //         .then(() => {
-    //             res.status(200).json({ message: 'Video berhasil diunggah dan disimpan.' });
-    //         })
-    //         .catch((error) => {
-    //             console.error('Terjadi kesalahan saat menyimpan video:', error);
-    //             res.status(500).json({ message: 'Terjadi kesalahan saat menyimpan video.' });
-    //         });
+        // Menyimpan data video ke MongoDB
+        const video = new Model({
+            buffer: {
+                data: buffer.data,
+                tyep: buffer.type
+            },
+            originalname
+        });
 
-    // return res.json({ status: 'ok', pesan: 'Berhasil disimpan ke database', data: result });
-    // } catch (error) {
-    //     return res.status(500).json({ pesan: 'Gagal menyimpan video ke database', dataVideo: req.file, error });
-    // }
+        video.save()
+            .then(() => {
+                res.status(200).json({ message: 'Video berhasil diunggah dan disimpan.' });
+            })
+            .catch((error) => {
+                console.error('Terjadi kesalahan saat menyimpan video:', error);
+                res.status(500).json({ message: 'Terjadi kesalahan saat menyimpan video.' });
+            });
+
+        return res.json({ status: 'ok', pesan: 'Berhasil disimpan ke database', data: result });
+    } catch (error) {
+        return res.status(500).json({ pesan: 'Gagal menyimpan video ke database', dataVideo: req.file, error });
+    }
 });
 
 app.get('/isi', async(req, res) => {
