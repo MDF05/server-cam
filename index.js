@@ -35,7 +35,7 @@ app.get('/', (req, res) => {
 })
 
 app.post('/upload', upload.single('video'), async(req, res) => {
-    res.json({ status: req.file, name: 'muhammad dava fahreza' })
+    return res.json({ status: req.file, name: 'muhammad dava fahreza' })
         // try {
         //     const { originalname, path } = req.file;
 
