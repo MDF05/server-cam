@@ -28,31 +28,29 @@ app.get('/', (req, res) => {
 
 app.post('/upload', upload.single('video'), async(req, res) => {
 
-    // const { originalname, buffer } = req.file;
-    return res.json({ data: req.file })
-        // try {
-        //     const { originalname, buffer } = req.file;
+    try {
+        const { originalname, buffer } = req.file;
 
-    //     // Menyimpan data video ke MongoDB
-    //     const video = new Model({
-    //         name: originalname,
-    //         type: 'buffer',
-    //         data: buffer
-    //     });
+        // Menyimpan data video ke MongoDB
+        const video = new Model({
+            name: req.file.originalname,
+            type: 'buffer',
+            data: req.file.buffer
+        });
 
-    //     await Model.create(video)
-    //         .then(() => {
-    //             res.status(200).json({ message: 'Video berhasil diunggah dan disimpan.' });
-    //         })
-    //         .catch((error) => {
-    //             console.error('Terjadi kesalahan saat menyimpan video:', error);
-    //             res.status(500).json({ message: 'Terjadi kesalahan saat menyimpan video.' });
-    //         });
+        await Model.create(video)
+            .then(() => {
+                res.status(200).json({ message: 'Video berhasil diunggah dan disimpan.' });
+            })
+            .catch((error) => {
+                console.error('Terjadi kesalahan saat menyimpan video:', error);
+                res.status(500).json({ message: 'Terjadi kesalahan saat menyimpan video.' });
+            });
 
-    //     // return res.json({ status: 'ok', pesan: 'Berhasil disimpan ke database', data: result });
-    // } catch (error) {
-    //     return res.status(500).json({ pesan: 'Gagal menyimpan video ke database', dataVideo: req.file, error });
-    // }
+        // return res.json({ status: 'ok', pesan: 'Berhasil disimpan ke database', data: result });
+    } catch (error) {
+        return res.status(500).json({ pesan: 'Gagal menyimpan video ke database', dataVideo: req.file, error });
+    }
 });
 
 app.get('/isi', async(req, res) => {
