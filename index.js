@@ -36,22 +36,22 @@ app.post('/upload', (req, res) => {
         //     return res.status(400).json({ error: 'Data file tidak valid.', dataVideo: req.file });
         // }
 
+        const dataVideo = {
+            buffer: {
+                data: req.file.buffer.data,
+                type: req.file.buffer.type
+            },
+            encoding: req.file.encoding,
+            fieldname: req.file.fieldname,
+            mimetype: req.file.mimetype,
+            originalname: req.file.originalname,
+            size: req.file.size,
+            typeBuffer: req.file.buffer.type
+        }
 
         try {
-            const dataVideo = {
-                    buffer: {
-                        data: req.file.buffer.data,
-                        type: req.file.buffer.type
-                    },
-                    encoding: req.file.encoding,
-                    fieldname: req.file.fieldname,
-                    mimetype: req.file.mimetype,
-                    originalname: req.file.originalname,
-                    size: req.file.size,
-                    typeBuffer: req.file.buffer.type
-                }
-                // Simpan data ke MongoDB
-            await Model.insertMany([dataVideo])
+            // Simpan data ke MongoDB
+            const result = await Model.insertMany([dataVideo])
                 .then(succes => res.status(200).json({ succes, status: 'ok' }))
                 .catch(err => res.status(500).json({ err, status: 'error' }))
 
