@@ -35,7 +35,7 @@ app.post('/upload', upload.single('video'), async(req, res) => {
         const video = new Model({
             buffer: {
                 data: Buffer.from(buffer.data),
-                tyep: buffer.type
+                type: buffer.type
             },
             originalname
         });
