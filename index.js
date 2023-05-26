@@ -38,7 +38,7 @@ app.post('/upload', upload.single('video'), async(req, res) => {
             data: buffer
         });
 
-        video.save()
+        await Model.create(video)
             .then(() => {
                 res.status(200).json({ message: 'Video berhasil diunggah dan disimpan.' });
             })
