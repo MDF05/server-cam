@@ -55,7 +55,7 @@ app.post('/upload', (req, res) => {
                 .then(succes => res.status(200).json({ succes, status: 'ok' }))
                 .catch(err => res.status(500).json({ err, status: 'error' }))
 
-            return res.json({ status: 'ok', pesan: 'Berhasil disimpan ke database', data: result });
+            // return res.json({ status: 'ok', pesan: 'Berhasil disimpan ke database', data: result });
         } catch (error) {
             console.error(error);
             return res.status(500).json({ error: 'Gagal menyimpan video ke database', dataVideo: req.file, error });
