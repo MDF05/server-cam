@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const { Model } = require('./utils/schema')
 const cors = require('cors')
 const multer = require('multer');
-const upload = multer({ dest: './public/uploads/' }).single('video');
+const upload = multer({ dest: './public/uploads/' }).array('video');
 const bodyParser = require('body-parser')
 
 const corsOption = {
@@ -31,7 +31,7 @@ app.post('/upload', (req, res) => {
             return res.status(500).json({ error: 'Terjadi kesalahan saat mengunggah file.' });
         }
 
-        // // Validasi data sebelum menyimpan
+        // Validasi data sebelum menyimpan
         if (!req.file || !req.file.buffer || !req.file.buffer.data || !req.file.buffer.type) {
             return res.status(400).json({ error: 'Data file tidak valid. atau kosong', dataVideo: req.file });
         }
