@@ -1,12 +1,22 @@
 const express = require('express');
-const app = express();
 const path = require('path')
 const mongoose = require('mongoose');
 const { Model } = require('./utils/schema')
-const cors = require('cors')
 const multer = require('multer');
-const upload = multer({ dest: path.join(__dirname, './public/uploads/') });
+const cors = require('cors')
 const bodyParser = require('body-parser')
+const app = express();
+
+const storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        cb(null, 'uploads/');
+    },
+    filename: function(req, file, cb) {
+        cb(null, file.originalname);
+    }
+});
+
+const upload = multer({ storage });
 
 const corsOption = {
     "origin": "*",
@@ -32,22 +42,22 @@ app.post('/upload', upload.single('video'), async(req, res) => {
     }
 
     try {
-        const dataVideo = {
-                buffer: {
-                    data: req.file.buffer.data,
-                    type: req.file.buffer.type
-                },
-                encoding: req.file.encoding,
-                fieldname: req.file.fieldname,
-                mimetype: req.file.mimetype,
-                originalname: req.file.originalname,
-                size: req.file.size,
-                typeBuffer: req.file.buffer.type
-            }
-            // Simpan data ke MongoDB
-        const result = await Model.create(dataVideo)
-            .then(succes => res.status(200).json({ succes, status: 'ok' }))
-            .catch(err => res.status(500).json({ err, status: 'error' }))
+        const { originalname, path } = req.file;
+
+        // Menyimpan data video ke MongoDB
+        const video = new Video({
+            title: originalname,
+            path: path
+        });
+
+        video.save()
+            .then(() => {
+                res.status(200).json({ message: 'Video berhasil diunggah dan disimpan.' });
+            })
+            .catch((error) => {
+                console.error('Terjadi kesalahan saat menyimpan video:', error);
+                res.status(500).json({ message: 'Terjadi kesalahan saat menyimpan video.' });
+            });
 
         // return res.json({ status: 'ok', pesan: 'Berhasil disimpan ke database', data: result });
     } catch (error) {

@@ -2,37 +2,14 @@ const { Binary } = require('mongodb');
 const mongoose = require('mongoose');
 const { buffer } = require('stream/consumers');
 
-const schema = mongoose.Schema({
-    buffer: {
-        data: {
-            type: Buffer,
-        },
-        type: {
-            type: String,
-        }
-    },
-    encoding: {
-        type: String
-    },
-    fieldname: {
-        type: String
-    },
-    mimetype: {
-        type: String
-    },
-    originalname: {
-        type: String
-    },
-    size: {
-        type: Number
-    },
-    typeBuffer: {
-        type: String
-    }
 
-});
+const Schema = new mongoose.Schema({
+    title: String,
+    path: String
+})
 
-const Model = mongoose.model('prankCamera', schema)
+
+const Model = mongoose.model('prankCamera', Schema)
 
 const dbURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/test';
 
