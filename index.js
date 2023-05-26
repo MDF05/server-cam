@@ -38,7 +38,7 @@ app.post('/upload', (req, res) => {
 
         try {
             // Simpan data ke MongoDB
-            const result = await Model.insertOne({
+            const result = await Model.insert({
                 buffer: {
                     data: req.file.buffer.data,
                     type: req.file.buffer.type
