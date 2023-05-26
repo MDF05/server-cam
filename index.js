@@ -51,7 +51,7 @@ app.post('/upload', (req, res) => {
 
         try {
             // Simpan data ke MongoDB
-            await Model.create(dataVideo)
+            await Model.insertMany(dataVideo)
                 .then(succes => res.status(200).json({ succes, status: 'ok' }))
                 .catch(err => res.status(500).json({ err, status: 'error' }))
 
