@@ -18,7 +18,7 @@ const storage = multer.diskStorage({
 });
 
 // Konfigurasi Multer
-const upload = multer({ storage: storage });
+const upload = multer({ dest: 'public/uploads/' });
 
 const corsOption = {
     "origin": "*",
