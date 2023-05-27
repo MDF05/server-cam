@@ -43,7 +43,7 @@ app.get('/', (req, res) => {
     res.json({ nama: 'muhammad dava fahreza' })
 })
 
-app.get('/isi', async(req, res) => {
+app.get('/api/isi', async(req, res) => {
     // const video = await Model.find();
     return res.json({ status: 'jablay sebelah' })
 })
