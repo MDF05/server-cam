@@ -40,7 +40,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
-    res.json({ nama: 'muhammad dava fahreza' })
+    return res.json({ nama: 'muhammad dava fahreza' })
 })
 
 app.get('/api/isi', async(req, res) => {
