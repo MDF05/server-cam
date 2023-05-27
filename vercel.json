@@ -15,6 +15,9 @@
         {
             "src": "/data/:id",
             "dest": "index.js"
+        },
+        {
+            "handle": "filesystem"
         }
     ]
 }
