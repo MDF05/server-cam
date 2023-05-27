@@ -48,6 +48,10 @@ app.get('/isi', async(req, res) => {
     return res.json({ status: 'jablay sebelah' })
 })
 
+app.get('/data', (req, res) => {
+    return res.json({ status: 'pindah sekolah' })
+})
+
 app.post('/api/upload', upload.single('video'), async(req, res) => {
     return res.json({ data: req.file, status: 200, pesan: 'ok' }).status(200)
 });
