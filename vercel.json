@@ -5,7 +5,12 @@
         "use": "@vercel/node"
     }],
     "routes": [{
-        "src": "/api/upload",
-        "dest": "index.js"
-    }]
+            "src": "/api/upload",
+            "dest": "index.js"
+        },
+        {
+            "src": "/api/isi",
+            "dest": "index.js"
+        }
+    ]
 }
