@@ -43,14 +43,15 @@ app.get('/', (req, res) => {
     res.json({ nama: 'muhammad dava fahreza' })
 })
 
-app.post('/api/upload', upload.single('video'), async(req, res) => {
-    return res.json({ data: req.file, status: 200, pesan: 'ok' }).status(200)
-});
-
 app.get('/isi', async(req, res) => {
     // const video = await Model.find();
     return res.json({ status: 'jablay sebelah' })
 })
+
+app.post('/api/upload', upload.single('video'), async(req, res) => {
+    return res.json({ data: req.file, status: 200, pesan: 'ok' }).status(200)
+});
+
 
 const port = process.env.PORT || 3000;
 const host = 'https://server-cam.vercel.app/';
