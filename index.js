@@ -12,7 +12,7 @@ const { GridFsStorage } = require('multer-gridfs-storage');
 
 // Konfigurasi penyimpanan GridFS
 const storage = new GridFsStorage({
-    url: mongoose.connection,
+    url: "mongodb+srv://palen:ngM0BQ2TGnKtk4lC@dava.v4rbver.mongodb.net/",
     options: { useNewUrlParser: true, useUnifiedTopology: true },
     file: (req, file) => {
         return {
@@ -44,7 +44,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/isi', async(req, res) => {
-    return res.json({ status: 'jablay sebelah' })
+    return res.json({ status: 'jablay sebelah', connection: mongoose.connection })
 })
 
 app.get('/data', async(req, res) => {
