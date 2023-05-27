@@ -48,8 +48,8 @@ app.post('/api/upload', upload.single('video'), async(req, res) => {
 });
 
 app.get('/isi', async(req, res) => {
-    const video = await Model.find({});
-    res.json({ status: video })
+    const video = await Model.find();
+    return res.json({ status: video })
 })
 
 const port = process.env.PORT || 3000;
