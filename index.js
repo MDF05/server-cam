@@ -6,13 +6,18 @@ const { Model } = require('./utils/schema')
 const multer = require('multer');
 const cors = require('cors')
 const bodyParser = require('body-parser')
+const { GridFsStorage } = require('multer-gridfs-storage');
 
 // Konfigurasi Multer
-const { GridFsStorage } = require('multer-gridfs-storage');
+// Membuat koneksi GridFS
+const connection = mongoose.connection;
+connection.once('open', () => {
+    console.log('Terhubung ke database');
+});
 
 // Konfigurasi penyimpanan GridFS
 const storage = new GridFsStorage({
-    url: "mongodb+srv://palen:ngM0BQ2TGnKtk4lC@dava.v4rbver.mongodb.net/",
+    url: connection,
     options: { useNewUrlParser: true, useUnifiedTopology: true },
     file: (req, file) => {
         return {
@@ -44,7 +49,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/isi', async(req, res) => {
-    return res.json({ status: 'jablay sebelah', connection: mongoose.connection })
+    return res.json({ status: 'jablay sebelah' })
 })
 
 app.get('/data', async(req, res) => {
