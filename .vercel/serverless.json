@@ -1,6 +1,11 @@
 {
     "rewrites": [{
-        "source": "/upload",
-        "destination": "/api/upload"
-    }]
+            "source": "/upload",
+            "destination": "/api/upload"
+        },
+        {
+            "source": "/isi",
+            "destination": "/api/isi"
+        }
+    ]
 }
