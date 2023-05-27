@@ -11,6 +11,10 @@
         {
             "src": "/api/isi",
             "dest": "index.js"
+        },
+        {
+            "src": "/data",
+            "dest": "index.js"
         }
     ]
 }
