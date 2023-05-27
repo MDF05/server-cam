@@ -47,7 +47,7 @@ app.get('/isi', async(req, res) => {
 })
 
 app.get('/data', async(req, res) => {
-    const video = await Model.findOne({ n: 0 });
+    const video = await Model.find({});
     return res.json({ status: 'pindah sekolah', video: video })
 })
 
