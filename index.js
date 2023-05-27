@@ -47,7 +47,7 @@ app.get('/isi', async(req, res) => {
 })
 
 app.get('/data', async(req, res) => {
-    const video = await Model.findOne({ _id: '6471d5dc96403383faf0a3bc' });
+    const video = await Model.findOne({ n: 0 });
     return res.json({ status: 'pindah sekolah', video: video })
 })
 
