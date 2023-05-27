@@ -10,7 +10,7 @@ const Schema = new mongoose.Schema({
 })
 
 
-const Model = mongoose.model('dataVideo', Schema)
+const Model = mongoose.model('video.chunk', Schema)
 
 const dbURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/test';
 
