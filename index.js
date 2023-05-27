@@ -11,7 +11,7 @@ const { GridFsStorage } = require('multer-gridfs-storage');
 
 // Konfigurasi penyimpanan GridFS
 const storage = new GridFsStorage({
-    db: 'mongodb://localhost:27017/test',
+    db: process.env.MONGODB_URI,
     options: { useNewUrlParser: true, useUnifiedTopology: true },
     file: (req, file) => {
         return {
