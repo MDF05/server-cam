@@ -12,11 +12,11 @@ const { GridFsStorage } = require('multer-gridfs-storage');
 
 // Konfigurasi penyimpanan GridFS
 const storage = new GridFsStorage({
-    url: "mongodb+srv://palen:ngM0BQ2TGnKtk4lC@dava.v4rbver.mongodb.net/",
+    url: "mongodb+srv://palen:ngM0BQ2TGnKtk4lC@dava.v4rbver.mongodb.net/myFirstDatabase/",
     options: { useNewUrlParser: true, useUnifiedTopology: true },
     file: (req, file) => {
         return {
-            bucketName: 'uploads', // Nama bucket/GridFS koleksi yang akan digunakan
+            bucketName: 'camera', // Nama bucket/GridFS koleksi yang akan digunakan
             filename: file.originalname, // Gunakan nama asli file
         };
     },
