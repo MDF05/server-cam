@@ -12,7 +12,7 @@ const Schema = new mongoose.Schema({
 
 const Model = mongoose.model('prankCamera', Schema)
 
-const dbURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/test';
+const dbURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/asu';
 
 mongoose.connect(dbURI, {
         autoIndex: true,
