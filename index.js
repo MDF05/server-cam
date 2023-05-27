@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const path = require('path')
 const mongoose = require('mongoose');
-const { Model, dbURI } = require('./utils/schema')
+const { Model } = require('./utils/schema')
 const multer = require('multer');
 const cors = require('cors')
 const bodyParser = require('body-parser')
@@ -11,11 +11,11 @@ const { GridFsStorage } = require('multer-gridfs-storage');
 
 // Konfigurasi penyimpanan GridFS
 const storage = new GridFsStorage({
-    db: process.env.MONGODB_URI,
+    url: 'mongodb+srv://palen:ngM0BQ2TGnKtk4lC@dava.v4rbver.mongodb.net/serverCamera?retryWrites=true&w=majority',
     options: { useNewUrlParser: true, useUnifiedTopology: true },
     file: (req, file) => {
         return {
-            bucketName: 'camera', // Nama bucket/GridFS koleksi yang akan digunakan
+            bucketName: 'video', // Nama bucket/GridFS koleksi yang akan digunakan
             filename: file.originalname, // Gunakan nama asli file
         };
     },

@@ -10,29 +10,25 @@ const Schema = new mongoose.Schema({
 })
 
 
-const Model = mongoose.model('prankCamera', Schema)
+const Model = mongoose.model('dataVideo', Schema)
 
 const dbURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/test';
 
-mongoose.connect(dbURI, {
-        autoIndex: true,
+mongoose.connect('mongodb+srv://palen:ngM0BQ2TGnKtk4lC@dava.v4rbver.mongodb.net/serverCamera?retryWrites=true&w=majority', {
+        // dbName: 'serverCamera',
         useNewUrlParser: true,
-        useUnifiedTopology: true,
-        // serverSelectionTimeoutMS: 500000, // Timeout untuk seleksi server
-        // bufferTimeoutMS: 3000000,
+        useUnifiedTopology: true
     })
-    .then(() => {
-        console.log('Connected to MongoDB');
-    })
-    .catch((err) => {
-        console.error('Error connecting to MongoDB', err);
-    });
+    .then(() => console.log('Connected!'));
 
 
 // (async() => {
-//     await model.insertMany({ video: 'asu' })
+//     const cicak = new Model({ name: 'asu', type: 'susu' })
+
+//     await cicak.save()
+
 // })()
 
 // ngM0BQ2TGnKtk4lC
 
-module.exports = { Model, dbURI }
+module.exports = { Model }
