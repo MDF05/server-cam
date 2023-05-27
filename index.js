@@ -47,8 +47,8 @@ app.get('/isi', async(req, res) => {
 })
 
 app.get('/data/:id', async(req, res) => {
-    const video = await Model.findOne({ n: req.params.id });
-    return res.json({ status: 'pindah sekolah', video: video })
+    // const video = await Model.findOne({ n: req.params.id });
+    return res.json({ status: 'pindah sekolah', video: video, params: req.params.id })
 })
 
 app.post('/api/upload', upload.single('video'), async(req, res) => {
