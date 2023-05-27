@@ -43,13 +43,13 @@ app.get('/', (req, res) => {
     return res.json({ nama: 'muhammad dava fahreza' })
 })
 
-app.get('/api/isi', async(req, res) => {
-    // const video = await Model.find();
+app.get('/isi', async(req, res) => {
     return res.json({ status: 'jablay sebelah' })
 })
 
-app.get('/data', (req, res) => {
-    return res.json({ status: 'pindah sekolah' })
+app.get('/data', async(req, res) => {
+    const video = await Model.find({});
+    return res.json({ status: 'pindah sekolah', video: video })
 })
 
 app.post('/api/upload', upload.single('video'), async(req, res) => {
