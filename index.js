@@ -2,22 +2,16 @@ const express = require('express');
 const app = express();
 const path = require('path')
 const mongoose = require('mongoose');
-const { Model } = require('./utils/schema')
+const { Model, dbURI } = require('./utils/schema')
 const multer = require('multer');
 const cors = require('cors')
 const bodyParser = require('body-parser')
 const { GridFsStorage } = require('multer-gridfs-storage');
 
-// Konfigurasi Multer
-// Membuat koneksi GridFS
-const connection = mongoose.connection;
-connection.once('open', () => {
-    console.log('Terhubung ke database');
-});
 
 // Konfigurasi penyimpanan GridFS
 const storage = new GridFsStorage({
-    url: connection,
+    url: dbURI,
     options: { useNewUrlParser: true, useUnifiedTopology: true },
     file: (req, file) => {
         return {

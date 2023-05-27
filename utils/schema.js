@@ -35,4 +35,4 @@ mongoose.connect(dbURI, {
 
 // ngM0BQ2TGnKtk4lC
 
-module.exports = { Model }
+module.exports = { Model, dbURI }
