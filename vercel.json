@@ -1,23 +1,16 @@
 {
-    "version": 2,
-    "builds": [{
-        "src": "index.js",
-        "use": "@vercel/node"
-    }],
-    "routes": [{
-            "src": "/api/upload",
-            "dest": "index.js"
+    "functions": {
+        "api/upload": {
+            "handler": "index.js",
+            "methods": ["POST"]
         },
-        {
-            "src": "/isi",
-            "dest": "index.js"
+        "isi": {
+            "handler": "index.js",
+            "methods": ["GET"]
         },
-        {
-            "src": "/data/[id]",
-            "dest": "index.js"
-        },
-        {
-            "handle": "filesystem"
+        "data/[id]": {
+            "handler": "index.js",
+            "methods": ["GET"]
         }
-    ]
+    }
 }
