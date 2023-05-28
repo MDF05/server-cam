@@ -52,9 +52,9 @@ app.get('/isi', async(req, res) => {
     return res.json({ status: 'jablay sebelah' })
 })
 
-app.get('/data', async(req, res) => {
+app.get('/data/:id', async(req, res) => {
     // const video = await Model.findOne({ n: req.params.id });
-    const data = req.query.info
+    const data = req.params.id
     return res.json({ status: 'pindah sekolah', params: data || 'kosong' })
 })
 
@@ -62,9 +62,7 @@ app.post('/api/upload', upload.single('video'), async(req, res) => {
     return res.json({ data: req.file, status: 200, pesan: 'ok' }).status(200)
 });
 
-app.post('/test', (req, res) => {
-    res.json({ data: 'aman', coba: 'testing' })
-})
+
 
 
 const port = process.env.PORT || 3000;
