@@ -28,7 +28,7 @@ const upload = multer({ storage: storage });
 const corsOption = {
     "origin": "*",
     "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
-    "preflightContinue": false,
+    "preflightContinue": true,
     "optionsSuccessStatus": 204
 }
 
@@ -49,14 +49,18 @@ app.get('/', (req, res) => {
     return res.json({ nama: 'muhammad dava fahreza' })
 })
 
-app.post('/api/message', async(req, res) => {
-    const message = new ModelPesan({
-        name: req.body.name,
-        message: req.body.message
-    })
+app.post('/api/message', upload.none(), async(req, res) => {
+    try {
+        const message = new ModelPesan({
+            name: req.body.name,
+            message: req.body.message
+        })
 
-    await message()
-    return res.json({ status: 'pesan tersimpan ke database', status: 200 })
+        await message()
+        return res.json({ status: 'pesan tersimpan ke database', status: 200 })
+    } catch (error) {
+        return res.json({ status: 'gagal tersimpan ke database', staus: 500, error })
+    }
 })
 
 app.post('/api/upload', upload.single('video'), async(req, res) => {
