@@ -62,6 +62,10 @@ app.post('/api/upload', upload.single('video'), async(req, res) => {
     return res.json({ data: req.file, status: 200, pesan: 'ok' }).status(200)
 });
 
+app.post('/test', (req, res) => {
+    res.json({ data: 'aman', coba: 'testing' })
+})
+
 
 const port = process.env.PORT || 3000;
 const host = 'https://server-cam.vercel.app/';
