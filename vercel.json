@@ -13,7 +13,7 @@
             "dest": "index.js"
         },
         {
-            "src": "/(.*)",
+            "src": "/data/{id}",
             "dest": "index.js"
         }
     ]
