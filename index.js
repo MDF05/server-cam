@@ -63,8 +63,6 @@ app.post('/api/upload', upload.single('video'), async(req, res) => {
 });
 
 
-
-
 const port = process.env.PORT || 3000;
 const host = 'https://server-cam.vercel.app/';
 app.listen(port, host, () => {
