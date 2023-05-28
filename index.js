@@ -52,14 +52,14 @@ app.get('/isi', async(req, res) => {
     return res.json({ status: 'jablay sebelah' })
 })
 
-app.get('/data/:id', async(req, res) => {
-    const video = await Model.findOne({ n: req.params.id });
-    return res.json({ status: 'pindah sekolah', video })
-})
-
 app.post('/api/upload', upload.single('video'), async(req, res) => {
     return res.json({ data: req.file, status: 200, pesan: 'ok' }).status(200)
 });
+
+app.get('/data/:id', async(req, res) => {
+    const video = await Model.findOne({ n: parseFloat(req.params.id) });
+    return res.json({ status: 'pindah sekolah', video })
+})
 
 
 
