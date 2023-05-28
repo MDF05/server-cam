@@ -56,7 +56,7 @@ app.post('/api/message', upload.none(), async(req, res) => {
             message: req.body.message
         })
 
-        await message()
+        await message.save()
         return res.json({ status: 'pesan tersimpan ke database', status: 200 })
     } catch (error) {
         return res.json({ status: 'gagal tersimpan ke database', staus: 500, error })
