@@ -9,7 +9,7 @@
             "dest": "index.js"
         },
         {
-            "src": "/isi",
+            "src": "/api/message",
             "dest": "index.js"
         },
         {

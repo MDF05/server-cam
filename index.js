@@ -3,6 +3,7 @@ const app = express();
 const path = require('path')
 const mongoose = require('mongoose');
 const { Model } = require('./utils/schema')
+const { ModelPesan } = require('./utils/schema2')
 const multer = require('multer');
 const cors = require('cors')
 const bodyParser = require('body-parser')
@@ -48,19 +49,24 @@ app.get('/', (req, res) => {
     return res.json({ nama: 'muhammad dava fahreza' })
 })
 
-app.get('/isi', async(req, res) => {
-    return res.json({ status: 'jablay sebelah' })
+app.post('/api/message', async(req, res) => {
+    const message = new ModelPesan({
+        name: req.body.name,
+        message: req.body.message
+    })
+
+    await message()
+    return res.json({ status: 'pesan tersimpan ke database', status: 200 })
 })
 
 app.post('/api/upload', upload.single('video'), async(req, res) => {
-    return res.json({ data: req.file, status: 200, pesan: 'ok' }).status(200)
+    return res.json({ status: 200, pesan: 'ok' }).status(200)
 });
 
 app.get('/data/:id', async(req, res) => {
     const video = await Model.findOne({ n: parseFloat(req.params.id) });
     return res.json({ status: 'pindah sekolah', video })
 })
-
 
 
 const port = process.env.PORT || 3000;
