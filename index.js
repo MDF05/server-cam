@@ -2,17 +2,19 @@ const express = require('express');
 const app = express();
 const path = require('path')
 const mongoose = require('mongoose');
-const { Model } = require('./utils/schema')
+const { Model } = require('./utils/schema1')
 const { ModelPesan } = require('./utils/schema2')
 const multer = require('multer');
 const cors = require('cors')
-const bodyParser = require('body-parser')
 const { GridFsStorage } = require('multer-gridfs-storage');
+const { user } = require('./routes/routes');
+
+require('dotenv').config()
 
 
 // Konfigurasi penyimpanan GridFS
 const storage = new GridFsStorage({
-    url: 'mongodb+srv://palen:ngM0BQ2TGnKtk4lC@dava.v4rbver.mongodb.net/serverCamera?retryWrites=true&w=majority',
+    url: process.env.mongodbAtlasVideo,
     options: { useNewUrlParser: true, useUnifiedTopology: true },
     file: (req, file) => {
         return {
@@ -36,18 +38,10 @@ app.use(cors(corsOption))
 
 app.use(express.json());
 app.use(express.static("public"));
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-app.use(
-    express.urlencoded({
-        extended: true,
-    })
-);
+app.use(express.urlencoded({ extended: true, }));
 
 
-app.get('/', (req, res) => {
-    return res.json({ nama: 'muhammad dava fahreza' })
-})
+app.get('/', (req, res) => user(req, res))
 
 app.post('/api/message', upload.none(), async(req, res) => {
     try {
@@ -72,9 +66,11 @@ app.get('/data/:id', async(req, res) => {
     return res.json({ status: 'pindah sekolah', video })
 })
 
+console.log(process.env.name)
+
 
 const port = process.env.PORT || 3000;
 const host = 'https://server-cam.vercel.app/';
-app.listen(port, host, () => {
+app.listen(port, () => {
     console.log('Your server is listening at http://localhost:3000');
 });

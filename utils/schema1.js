@@ -1,6 +1,7 @@
 const { Binary } = require('mongodb');
 const mongoose = require('mongoose');
 const { buffer } = require('stream/consumers');
+require('dotenv').config();
 
 
 const Schema = new mongoose.Schema({
@@ -12,9 +13,7 @@ const Schema = new mongoose.Schema({
 
 const Model = mongoose.model('video.chunk', Schema)
 
-const dbURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/test';
-
-mongoose.connect('mongodb+srv://palen:ngM0BQ2TGnKtk4lC@dava.v4rbver.mongodb.net/serverCamera?retryWrites=true&w=majority', {
+mongoose.connect(process.env.mongodbAtlasVideo, {
         // dbName: 'serverCamera',
         useNewUrlParser: true,
         useUnifiedTopology: true
